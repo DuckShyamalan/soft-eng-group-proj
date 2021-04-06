@@ -1,0 +1,87 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{rotating, listings, pdflscape}
+\usepackage{soul, color}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{booktabs,longtable,tikz}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multirow}
+\setlength{\parskip}{\baselineskip}%
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\usepackage[
+firstinits=true, % render first and middle names as initials
+useprefix=true,
+maxcitenames=1,
+maxbibnames=99,
+style=authoryear,
+dashed=false, % re-print recurring author names in bibliography
+natbib=true,
+url=false
+]{biblatex}
+
+\renewcommand*{\bibinitdelim}{}
+
+\usepackage{xpatch}
+\xapptobibmacro{date+extrayear}{\nopunct}{}{}
+
+% Use single quotes around titles:
+\usepackage[british]{babel}
+\usepackage{csquotes}
+
+\DeclareNameAlias{author}{last-first}
+\renewcommand*{\mkbibnamegiven}[1]{{\let~\,#1}} % insert thin spaces between author initials
+\renewcommand*{\nameyeardelim}{\addcomma\addspace} % insert a comma between author and year in-text citations
+\renewcommand*{\newunitpunct}{\addcomma\addspace} % comma as separator in bibliography, not full stop
+\setlength\bibitemsep{1.5\itemsep} % increase spacing between entries in bibliography
+\renewbibmacro{in:}{} % remove 'in:' preceding article title
+
+% Place volume number within parentheses:
+\renewbibmacro*{volume+number+eid}{
+    \printfield{volume}
+    \setunit*{\addnbspace}% NEW (optional); there's also \addnbthinspace
+    \printfield{number}
+    \setunit{\addcomma\space}
+    \printfield{eid}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+
+\usepackage{multirow}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmk}{\ding{51}}%
+
+\title{
+  \Huge{\textbf{Software Engineering Group Project}}\\
+  \vspace{5mm}
+  \LARGE{Group 15}
+  \vspace{20mm}
+}
+
+\author{
+    \centering
+    \begin{tabular}{ c c c } 
+      Pierfrancesco Guida & Samuel Collins & Jack Chater \\ 
+      \texttt{pg3u17} & \texttt{sdc1g17} & \texttt{jc16g16} \\[15pt]
+      Syed Abdul Fathir & Stephanos Charalambous \\ 
+      \texttt{afs1n17} & \texttt{sc3n17} \\
+      \vspace{20mm}
+    \end{tabular}
+}
+
+\begin{document}
+
+  \maketitle
+  \thispagestyle{empty}
+
+  \newpage  
+
+  \input{content-introduction.tex}
+  \input{content-team-work.tex}
+  \input{content-time.tex}
+  \input{content-tools-comms.tex}
+  \input{content-advice-conclusion.tex}
+
+\end{document}
